@@ -27,14 +27,6 @@ jobs:
         with:
           node-version: 20
 
-      - name: Verify Root and Nested Skill Parity
-        run: |
-          echo "Checking parity between root and skills/vllm-learning/..."
-          diff -u SKILL.md skills/vllm-learning/SKILL.md || { echo "Error: Root SKILL.md and skills/vllm-learning/SKILL.md are out of sync!"; exit 1; }
-          diff -u protocols/qa_session.md skills/vllm-learning/protocols/qa_session.md || { echo "Error: protocols/qa_session.md out of sync!"; exit 1; }
-          diff -u state/progress.md skills/vllm-learning/state/progress.md || { echo "Error: state/progress.md out of sync!"; exit 1; }
-          echo "Parity check passed!"
-
       - name: Verify npx skills Discovery
         run: |
           echo "Verifying local skill discovery with npx skills..."
@@ -49,6 +41,10 @@ jobs:
           
           echo "Installing vllm-learning skill..."
           npx -y skills add "$GITHUB_WORKSPACE" --skill vllm-learning -y --copy
+          
+          echo "Verifying .github was not leaked into the skill installation..."
+          test ! -d /tmp/test-agent-sandbox/.agents/skills/vllm-learning/.github || { echo "Error: .github leaked into skill installation!"; exit 1; }
+          test -f /tmp/test-agent-sandbox/.agents/skills/vllm-learning/SKILL.md || { echo "Error: SKILL.md not found in installed skill!"; exit 1; }
           
           echo "Listing installed skills..."
           npx -y skills list
