@@ -5,6 +5,15 @@ All notable changes to the skills in this repository will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.0.1] - 2026-09-14
+
+### Changed
+- **Interactive UI Modal Q&A**: Updated Section 11 and `protocols/qa_session.md` to trigger questions via the agentic `ask_question` tool with interactive options and write-in support, strictly halting execution until the learner replies.
+- **Strict Single-Topic Mastery Gating**: Added Section 12 to prohibit generating scaffolding or tests for future stages until the current stage is verified, built, and explicitly approved by the learner.
+- **Relative Repository Path Enforcement**: Added Section 13 requiring all file and code references to strictly use relative paths (`./level0_naive/...`) rather than absolute paths.
+- **Chat Math Clean Formatting**: Added Section 14 requiring clean Unicode mathematical notation or monospace code blocks instead of raw LaTeX delimiters (`$...$`) in chat responses.
+- **Curriculum State Initialization**: Initialized `state/progress.md` with active tracking for Level 0 (The Problem vLLM Solves).
+
 ## [v1.0.0] - 2026-09-13
 
 ### Added

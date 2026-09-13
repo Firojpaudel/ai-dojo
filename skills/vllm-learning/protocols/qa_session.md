@@ -1,27 +1,24 @@
 # Interactive Q&A Protocol
 
-## Core Rule: One Question at a Time
+## Core Rule: Interactive Modal Q&A & One Question at a Time
 
 When testing reasoning or diagnosing understanding:
-1. **Ask exactly one meaningful, focused question.**
-2. **STOP AND WAIT.** Never answer your own question. Never dump a 2,000-word explanation following a question in the same turn.
-3. Wait for the learner to provide their answer and mental model.
+1. **Trigger Interactive Q&A Modal Popups**: Use the agentic question tool (`ask_question`) to render an interactive UI modal with structured options and write-in capability so the learner can engage directly.
+2. **Ask exactly one meaningful, focused question at a time.**
+3. **STOP AND WAIT.** Execution blocks until the user responds in the modal. Never answer your own question in the same turn.
+4. **Strict Single-Topic Gating**: Do NOT generate code, test harnesses, or files for subsequent curriculum levels until the learner has completely mastered the current topic and explicitly given approval to move forward.
+5. **Relative File Paths**: Always reference repository files using relative paths (e.g. `./level0_naive/LESSON.md`, `level0_naive/naive_generator.py`), never absolute paths.
 
 ## Turn Pattern
 
-```
-Concept Anchor
-     ↓
-Single Question
-     ↓
-[STOP & WAIT FOR LEARNER RESPONSE]
-     ↓
-Evaluate Reasoning
-     ↓
-Targeted Feedback / Smallest Useful Hint
-     ↓
-Next Question or Rigorous Synthesis
-```
+Concept Anchor / ASCII Diagram ↓ Trigger Interactive Modal Question (ask_question) ↓ [BLOCKED & WAITING FOR LEARNER MODAL RESPONSE] ↓ Evaluate Reasoning ↓ Targeted Feedback / Smallest Useful Hint ↓ Next Diagnostic Question OR Explicit Learner Approval to Advance
+
+## Topic Mastery Gate Before Advancement
+
+Never jump ahead. A topic is only complete when:
+1. Learner derives and articulates the underlying system invariant.
+2. Learner implements and tests their own code for the current level.
+3. Learner explicitly confirms they are ready to advance to the next level.
 
 ## Response Evaluation Taxonomy
 

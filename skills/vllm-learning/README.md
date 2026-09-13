@@ -1,4 +1,4 @@
-# AI Systems Apprenticeship — vLLM Learning Skill (v1.0.0)
+# AI Systems Apprenticeship — vLLM Learning Skill (v1.0.1)
 
 A modular Agent Skill for learning modern AI inference systems deeply, using vLLM as the primary laboratory.
 
@@ -9,7 +9,7 @@ A modular Agent Skill for learning modern AI inference systems deeply, using vLL
 This skill enforces:
 - **First-principles reasoning**: Derived from physical hardware constraints (memory bandwidth, compute intensity, PCIe/NVLink bottlenecks).
 - **Primary-source-first research**: Current official source code, design RFCs, tests, and original papers over secondary summaries.
-- **Interactive Socratic Q&A**: Concept Anchor -> Single Question -> Wait for learner response -> Evaluate mental model -> Minimal hints.
+- **Interactive Modal Q&A**: Concept Anchor -> Trigger interactive UI modal (`ask_question`) -> Wait for learner response -> Evaluate mental model -> Minimal hints.
 - **Evidence-based understanding**: Toy implementation from scratch, invariant tests, reproducible benchmarks, and upstream production code mapping.
 - **Current-version awareness**: Explicit distinction between Research Papers, Legacy Architecture (v0), and Current Production Code (v1).
 - **Strict Anti-Hallucination**: Grounding all technical assertions with explicit labels (`[VERIFIED]`, `[INFERRED]`, `[HYPOTHESIS]`, `[HISTORICAL]`, `[UNVERIFIED]`).

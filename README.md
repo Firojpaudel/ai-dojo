@@ -14,9 +14,9 @@ A comprehensive AI-systems apprenticeship for learning modern inference engines 
 
 - **Directory**: [`skills/vllm-learning/`](skills/vllm-learning/)
 - **Entry Point**: [`skills/vllm-learning/SKILL.md`](skills/vllm-learning/SKILL.md)
-- **Specification Version**: 1.0.0
+- **Specification Version**: 1.0.1
 - **Key Capabilities**:
-  - **Turn-Based Interactive Socratic Q&A**: Asks one question at a time and halts execution until the learner answers, evaluating mental models and providing minimal guidance.
+  - **Turn-Based Interactive Modal Q&A**: Asks one question at a time using interactive UI modals (`ask_question`) and halts execution until the learner answers, evaluating mental models and providing minimal guidance.
   - **Strict Source Governance**: Prioritizes current source code, official documentation, executable tests, and primary research papers over secondary summaries.
   - **Anti-Hallucination Tagging**: Formally categorizes all technical claims (`[VERIFIED]`, `[INFERRED]`, `[HYPOTHESIS]`, `[HISTORICAL]`, `[UNVERIFIED]`).
   - **Production Code Mapping**: Connects theoretical models directly to current upstream files, classes, and methods.

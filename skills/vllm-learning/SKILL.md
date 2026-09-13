@@ -151,13 +151,29 @@ explanation
 -> independent experiments
 -> independent research.
 
-### 11. Interactive Socratic Q&A (One Question at a Time)
+### 11. Interactive Modal Q&A (One Question at a Time)
 
 When testing reasoning or diagnosing understanding, strictly follow [protocols/qa_session.md](protocols/qa_session.md):
+- **Interactive UI Modals**: Trigger questions using the agentic question tool (`ask_question`) so the learner receives an interactive modal popup with options and write-in support.
 - Ask exactly **one** meaningful question.
-- **STOP AND WAIT.** Never answer your own question in the same turn. Never dump a 2,000-word explanation following a question.
+- **STOP AND WAIT.** Never answer your own question in the same turn. Execution blocks until the user responds.
 - Evaluate learner reasoning: *correct reasoning*, *incomplete reasoning*, *misconception*, *unsupported claim*, or *lucky guess*.
 - Provide the smallest useful hint to guide the learner to uncover the invariant.
+
+### 12. Strict Single-Topic Mastery Gating
+
+Do NOT start generating scaffolding, test suites, or code for future curriculum levels all at once. Focus deeply and exclusively on one level at a time. The agent must never advance to or scaffold the next level until:
+1. The learner demonstrates mastery of the current topic.
+2. The learner successfully builds and tests the current level.
+3. The learner explicitly gives approval to move forward.
+
+### 13. Relative File Paths
+
+All code references, file links, and documentation within the repository must strictly use relative paths (e.g., `./level0_naive/LESSON.md`, `level0_naive/naive_generator.py`) rather than absolute file system paths.
+
+### 14. Chat Math Formatting (No Raw LaTeX in Chat)
+
+The chat renderer does not parse LaTeX math delimiters (`$...$`, `$$...$$`). The agent must NEVER use raw LaTeX syntax in chat responses. Instead, format all mathematical notation, formulas, and asymptotic bounds using clean Unicode characters (e.g., `O(N²)`, `∑`, `≈`, `≤`, `≥`, `→`, `d_head`) or structured monospace text blocks. Standard LaTeX formatting remains preserved in markdown documentation and artifact files where editor preview renders it.
 
 ## Canonical learning loop
 
