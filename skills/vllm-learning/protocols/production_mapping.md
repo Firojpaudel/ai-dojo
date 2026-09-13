@@ -11,16 +11,22 @@ Bridge the gap between theoretical models, toy implementations, and active produ
 Source-grounded engineering means grounded at **runtime**, not authoring time. Because production runtimes like vLLM evolve rapidly, the agent and learner must never assume static file paths or invent line numbers.
 
 ### The Dynamic Discovery Cycle
-1. **Search the Active Checkout**: Use ripgrep or grep tools to locate the target symbol or entry point in the current repository:
+1. **Bootstrap Checkout (If Not Present)**:
+   If no local clone of vLLM exists in the workspace:
+   ```bash
+   git clone --depth 1 https://github.com/vllm-project/vllm.git
+   cd vllm && git rev-parse --short HEAD
+   ```
+2. **Search the Active Checkout**: Use ripgrep or grep tools to locate the target symbol or entry point in the current repository:
    ```bash
    # Example: locate the modern V1 scheduler entry point
    git grep "class .*Scheduler" vllm/v1/
    ```
-2. **State Ground-Truth Metadata**: Always record:
+3. **State Ground-Truth Metadata**: Always record:
    - **Repository & Commit Hash**: e.g., `vllm @ commit 7a8b9c...` (or current active release tag).
    - **Target File Path**: Verified in the active repository checkout (e.g., `vllm/v1/core/sched/scheduler.py`).
-   - **Target Class / Function**: e.g., `Scheduler.schedule()` or `KVBlockAllocator`.
-3. **Never Invent Line Numbers**: Direct the learner to semantic landmarks (class definitions, method names, loop invariants) rather than volatile static line ranges.
+   - **Target Class / Function**: e.g., `Scheduler.schedule()` or `KVCacheManager`.
+4. **Never Invent Line Numbers**: Direct the learner to semantic landmarks (class definitions, method names, loop invariants) rather than volatile static line ranges.
 
 ---
 

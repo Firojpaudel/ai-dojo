@@ -28,7 +28,7 @@ Progress is governed strictly by **capability evidence and physical invariant ve
 ---
 
 ## Stage 03 — Prefill vs. Decode & The KV Cache Bottleneck
-- **Core Topics**: The fundamental asymmetry of LLM inference: compute-bound prefill phase vs. memory-bandwidth-bound decode phase. The quadratic compute of attention (O(N²) prompt) vs. linear token-by-token generation. KV cache memory footprint equations: 2 * 2 * n_layers * n_heads * d_head * seq_len * precision_bytes.
+- **Core Topics**: The fundamental asymmetry of LLM inference: compute-bound prefill phase vs. memory-bandwidth-bound decode phase. The quadratic compute of attention (O(N²) prompt) vs. linear token-by-token generation. Exact KV cache footprint equation: `2 * n_layers * n_kv_heads * d_head * seq_len * precision_bytes` (where the initial factor of 2 accounts for Key and Value tensors, and `n_kv_heads` captures MHA, MQA where `n_kv_heads = 1`, and GQA where `n_kv_heads < n_heads`). Derive how GQA reduces KV cache memory footprint by 4–8x compared to MHA (e.g. Llama-3-70B: 64 query heads vs. 8 KV heads).
 - **Physical Invariants**: Arithmetic Intensity I = FLOPs / Bytes. Why decode arithmetic intensity is typically <= 1 FLOP/Byte, fundamentally bottlenecked by GPU HBM memory bandwidth.
 - **Milestone Deliverable**: Toy generative model comparing memory traffic with and without KV caching, verifying that without cache, computation scales quadratically per generated token.
 
@@ -42,9 +42,9 @@ Progress is governed strictly by **capability evidence and physical invariant ve
 ---
 
 ## Stage 05 — Paged KV Memory Systems & PagedAttention
-- **Core Topics**: The physical memory fragmentation problem: internal reservation waste (pre-allocating for max_seq_len) and external fragmentation (varying request lifetimes). Operating system virtual memory paging analogy. Logical-to-physical block tables, fixed-size KV blocks, non-contiguous physical allocation, copy-on-write (CoW) for parallel sampling, and prefix caching.
-- **Physical Invariants**: Memory fragmentation drops from 60–80% to near 0% by allocating fixed-size blocks dynamically as tokens are generated.
-- **Milestone Deliverable**: Implement a standalone BlockAllocator and BlockTable supporting logical block mapping, dynamic allocation on token append, reference counting, and fork-on-write branching.
+- **Core Topics**: The physical memory fragmentation problem: internal reservation waste (pre-allocating for max_seq_len) and external fragmentation (varying request lifetimes). Operating system virtual memory paging analogy. Logical-to-physical block tables, fixed-size KV blocks, non-contiguous physical allocation, copy-on-write (CoW) for parallel sampling, and prefix caching. Mathematical derivation of terminal block internal waste: `average waste = (block_size / 2) / seq_len` (< 4% for block_size=16 and seq_len >= 256).
+- **Physical Invariants**: Memory waste is bounded strictly to the final block of each sequence (< 4% overall waste), completely eliminating external fragmentation and upfront reservation waste.
+- **Milestone Deliverable**: Complete the shipped Stage 05 laboratory (`block_allocator.py`, pass `test_block_allocator.py`, and run `benchmark_fragmentation.py`), verifying logical-to-physical mapping, CoW branching, and empirical memory utilization.
 
 ---
 

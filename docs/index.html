@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ai-dojo — AI Systems Skills for Coding Agents</title>
-  <meta name="description" content="ai-dojo is a high-craft collection of modular Agent Skills for mastering AI systems, inference runtimes, and GPU engineering. Flagship skill: vllm-learning v2.0.0.">
+  <meta name="description" content="ai-dojo is a high-craft collection of modular Agent Skills for mastering AI systems, inference runtimes, and GPU engineering. Flagship skill: vllm-learning v2.1.0.">
   
   <!-- Favicon: Torii Gate Minimalist Vector Mark -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23090E17'><path d='M2 5h20v2H2V5zm3 4h14v1.5H5V9zm2 3.5h10v1.5H7v-1.5zM6 16h2v6H6v-6zm10 0h2v6h-2v-6z'/></svg>">
@@ -1379,7 +1379,7 @@
       <div class="hero-left">
         <a href="#curriculum" class="hero-announcement">
           <span class="ann-tag">Flagship</span>
-          <span class="ann-title">vllm-learning v2.0.0 is live</span>
+          <span class="ann-title">vllm-learning v2.1.0 is live</span>
           <span class="ann-arrow">&rarr;</span>
         </a>
 
@@ -1441,7 +1441,7 @@
             <div class="traffic-dot dot-green"></div>
           </div>
           <div class="terminal-title">
-            <span>ai-dojo</span> &bull; <span class="terminal-title-skill">vllm-learning v2.0</span>
+            <span>ai-dojo</span> &bull; <span class="terminal-title-skill">vllm-learning v2.1.0</span>
           </div>
           <div class="terminal-header-spacer"></div>
         </div>
@@ -1483,32 +1483,32 @@
               <span class="term-tag tag-verified">CORRECT REASONING</span>
             </div>
             <p class="term-body-text">
-              Locate the active production scheduler in vLLM V1:<br>
-              <span class="term-tag tag-target">DYNAMIC TARGET</span> <span class="term-code-path">vllm/v1/core/sched/scheduler.py</span> &rarr; class Scheduler.<br>
-              What invariant does the scheduler enforce when token budgets exhaust during chunked prefill?<span class="term-cursor"></span>
+              Inspect the active production KV cache manager in vLLM V1:<br>
+              <span class="term-tag tag-target">DYNAMIC TARGET</span> <span class="term-code-path">vllm/v1/core/kv_cache_manager.py</span> &rarr; class KVCacheManager.<br>
+              Why is memory waste bounded strictly to the final block of each sequence?<span class="term-cursor"></span>
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills Catalog Section: 3-column layout with ample room -->
+    <!-- Skills Catalog Section: Focused on Production-Ready Skills -->
     <section id="skills" class="scroll-reveal">
       <div class="section-header-block">
-        <h2>Modular Skills Catalog</h2>
-        <p>A growing dojo of high-impact AI systems disciplines. Install individual skills or the complete laboratory.</p>
+        <h2>Available Agent Skills</h2>
+        <p>Production-grade systems skills built for hands-on investigation, empirical verification, and runtime code tracing.</p>
       </div>
 
-      <div class="catalog-grid">
+      <div class="catalog-grid" style="grid-template-columns: repeat(2, 1fr);">
         <!-- Skill 1: vllm-learning (Live Flagship) -->
         <div class="catalog-card active-skill stagger-1 scroll-reveal">
           <div>
             <div class="catalog-head">
               <span class="catalog-title">vllm-learning</span>
-              <span class="catalog-pill-status status-live">v2.0.0 &bull; Live</span>
+              <span class="catalog-pill-status status-live">v2.1.0 &bull; Live</span>
             </div>
             <p class="catalog-desc">
-              The flagship 14-stage AI systems apprenticeship. Adaptive 4-block engine, dynamic 12-factor competency tracking, modern vLLM V1 source grounding, and virtual roofline fallback.
+              The flagship 14-stage AI systems apprenticeship. Adaptive 4-block engine, discrete competency modeling, modern vLLM V1 runtime discovery, and virtual roofline fallback.
             </p>
           </div>
           <div class="catalog-cmd-chip">
@@ -1517,37 +1517,20 @@
           </div>
         </div>
 
-        <!-- Skill 2: triton-kernels (In Training) -->
+        <!-- Specification Card: Standards & Universal Tooling -->
         <div class="catalog-card stagger-2 scroll-reveal">
           <div>
             <div class="catalog-head">
-              <span class="catalog-title">triton-kernels</span>
-              <span class="catalog-pill-status status-roadmap">In Training</span>
+              <span class="catalog-title">Universal Agent Spec</span>
+              <span class="catalog-pill-status status-roadmap" style="background: var(--surface-subtle); color: var(--text-muted); border-color: var(--border);">Open Standard</span>
             </div>
             <p class="catalog-desc">
-              GPU kernel engineering from scratch. SRAM tiling, online softmax, fused layernorm, and Triton block scheduling.
+              Fully decoupled state architecture. Compatible out of the box with Claude Code, Cursor, Antigravity, and Windsurf without package state collision.
             </p>
           </div>
           <div class="catalog-cmd-chip">
-            <span>--skill triton-kernels</span>
-            <span>Coming Soon</span>
-          </div>
-        </div>
-
-        <!-- Skill 3: speculative-decoding (In Training) -->
-        <div class="catalog-card stagger-3 scroll-reveal">
-          <div>
-            <div class="catalog-head">
-              <span class="catalog-title">speculative-decoding</span>
-              <span class="catalog-pill-status status-roadmap">In Training</span>
-            </div>
-            <p class="catalog-desc">
-              Draft &amp; target verification, rejection sampling math, tree attention, and speculative token acceptance dynamics.
-            </p>
-          </div>
-          <div class="catalog-cmd-chip">
-            <span>--skill speculative-decoding</span>
-            <span>Coming Soon</span>
+            <span>npx skills add Firojpaudel/ai-dojo</span>
+            <span style="color: var(--text-faint);">Universal</span>
           </div>
         </div>
       </div>
@@ -1662,15 +1645,15 @@
           <div class="stage-row">
             <span class="stage-num-tag">04</span>
             <div class="stage-info">
-              <h4>PagedAttention &amp; Virtual Memory</h4>
-              <p>Operating system paging analogy, logical to physical blocks, non-contiguous allocation, and zero waste.</p>
+              <h4>Continuous Batching &amp; Scheduling</h4>
+              <p>Static vs cellular vs iteration-level batching, preemptions, recomputation vs swap, and prompt prioritization.</p>
             </div>
           </div>
           <div class="stage-row">
             <span class="stage-num-tag">05</span>
             <div class="stage-info">
-              <h4>Continuous Batching &amp; Scheduling</h4>
-              <p>Static vs cellular vs iteration-level batching, preemptions, recomputation vs swap, and prompt prioritization.</p>
+              <h4>Paged KV Memory &amp; PagedAttention</h4>
+              <p>Operating system paging analogy, logical-to-physical block tables, CoW, and &lt;4% waste bounded to terminal blocks.</p>
             </div>
           </div>
           <div class="stage-row">
@@ -1807,7 +1790,7 @@
           <div class="dojo-seal-card">
             <div class="dojo-seal-top">
               <img src="ai-dojo.png" alt="ai-dojo standard" class="dojo-seal-img">
-              <span class="dojo-seal-pill">Standard v2.0</span>
+              <span class="dojo-seal-pill">Standard v2.1</span>
             </div>
             <p class="dojo-seal-desc">
               Universal Agent Skills specification. Source-grounded apprenticeship instructions, upstream repo pointers, and strict turn-based halting.

@@ -1,14 +1,10 @@
 ---
 name: vllm-learning
 description: >
-  A rigorous AI systems apprenticeship for learning modern inference engines, GPU memory dynamics, and runtime architectures using vLLM as the primary laboratory.
-use-when:
-  - When the user asks to learn or understand AI inference engines, runtime architecture, or vLLM internals.
-  - When the user requests systems engineering mentorship on KV-cache management, PagedAttention, continuous batching, or attention kernels.
-  - When the user wants to debug, benchmark, or trace modern inference implementations from physical first principles.
+  A rigorous AI systems apprenticeship for learning modern inference engines, GPU memory dynamics, and runtime architectures using vLLM as the primary laboratory. Use when the user asks to learn or understand AI inference engines, vLLM internals, KV-cache management, PagedAttention, continuous batching, attention kernels, or wants to debug, benchmark, or trace modern inference implementations from physical first principles.
 ---
 
-# AI Systems Apprenticeship — vLLM Learning Skill v2.0
+# AI Systems Apprenticeship — vLLM Learning Skill v2.1.0
 
 ## Mission
 
@@ -18,16 +14,16 @@ Act as a rigorous, source-grounded engineering mentor for mastering modern AI in
 
 ## Non-Negotiable Operating Principles
 
-### 1. Truth Before Fluency (Anti-Hallucination Tagging)
+### 1. Truth Before Fluency (Tool-Bound Claim Tagging)
 Never invent facts, file paths, line numbers, or benchmark metrics. Explicitly label critical claims per [protocols/source_verification.md](protocols/source_verification.md):
-- `[VERIFIED]`: Directly confirmed against active source code, official docs, or empirical test.
-- `[INFERRED]`: Deductively derived from verified premises with chain of reasoning stated.
+- `[VERIFIED]`: Directly confirmed against primary source code via an active tool call in this session (`view_file`, `grep_search`, `run_command`). Emitting `[VERIFIED]` without an executed tool call is strictly forbidden.
+- `[INFERRED]`: Deductively derived from verified primitives with chain of reasoning stated.
 - `[HYPOTHESIS]`: An educated conjecture awaiting experimental proof.
 - `[HISTORICAL]`: True for legacy releases (e.g. vLLM V0) but altered in current architecture (V1).
-- `[UNVERIFIED]`: Secondary intuition not yet validated against primary source code.
+- `[UNVERIFIED]`: Secondary intuition or parametric memory not yet validated against primary source code.
 
 ### 2. Primary-Source Grounded & Runtime Discovery
-Ground every claim in official source code, executable tests, official RFCs, or landmark papers ([sources/SOURCE_POLICY.md](sources/SOURCE_POLICY.md) & [sources/SOURCE_REGISTRY.md](sources/SOURCE_REGISTRY.md)). Never assume static line numbers or obsolete files: direct the learner to grep the active checkout and state the verified commit hash ([protocols/production_mapping.md](protocols/production_mapping.md)).
+Ground every claim in official source code, executable tests, official RFCs, or landmark papers ([sources/SOURCE_POLICY.md](sources/SOURCE_POLICY.md) & [sources/SOURCE_REGISTRY.md](sources/SOURCE_REGISTRY.md)). Never assume static line numbers or obsolete files: direct the learner to bootstrap/grep the active checkout and state the verified commit hash ([protocols/production_mapping.md](protocols/production_mapping.md)).
 
 ### 3. Turn-Based Q&A & Strict Turn Halting
 When diagnosing understanding or introducing system invariants:
@@ -46,8 +42,8 @@ Never paste corrected implementation lines on the first debugging turn ([protoco
 ### 5. Hardware Fallback & Virtual Roofline Mode
 If an NVIDIA GPU is unavailable, pivot seamlessly to CPU tensor simulation and derive theoretical arithmetic intensity (`I = FLOPs / Bytes`) and attainable performance analytically. Never stall a lesson due to missing hardware ([protocols/benchmarking.md](protocols/benchmarking.md)).
 
-### 6. Decoupled Workspace State
-Learner state lives in the active workspace at `<workspace_root>/.vllm-learning/`, completely decoupled from the skill package. Maintain the 12-factor competency profile dynamically without hardcoding ([protocols/state_tracking.md](protocols/state_tracking.md)).
+### 6. Decoupled Workspace State & Discrete Competencies
+Learner state lives in the active workspace at `<workspace_root>/.vllm-learning/`, completely decoupled from the skill package. Maintain the 12-factor competency profile dynamically using discrete levels `{0: None, 1: Scaffolded, 2: Autonomous}` ([protocols/state_tracking.md](protocols/state_tracking.md)).
 
 ---
 

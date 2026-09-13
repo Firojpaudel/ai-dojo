@@ -32,39 +32,37 @@ State updates must not occur on every conversational message (to avoid file thra
 
 ---
 
-## 3. Objective Scoring Rubric (Continuous Scale 0.00 – 1.00)
+## 3. Objective Scoring Rubric (Discrete 3-Level Scale {0, 1, 2})
 
-The agent evaluates learner evidence against these concrete anchors:
+Rather than unstable floating-point estimates, the agent scores each competency dimension using three discrete, observable states:
 
-- **0.00 – 0.20 (No Grounding / Guess)**: Learner makes an unsupported guess, refuses derivation, or demonstrates complete absence of the physical mental model.
-- **0.21 – 0.50 (Surface / Fragile)**: Learner recalls syntax or names, but cannot explain why the mechanism works under physical/hardware constraints.
-- **0.51 – 0.70 (Working with Scaffolding)**: Learner derives the invariant or writes passing code with the help of Tier 1 or Tier 2 hints.
-- **0.71 – 0.89 (Autonomous Mastery)**: Learner derives the invariant from scratch, passes all edge-case tests, or points to upstream source without hints.
-- **0.90 – 1.00 (Adversarial Defense)**: Learner refutes an adversarial counter-claim, isolates an injected bug, or teaches the concept back flawlessly.
+- **`0` — None**: Absent mental model, unsupported guess, non-functional code, or inability to articulate the underlying physical constraint.
+- **`1` — Scaffolded**: Functional with assistance. Derives the invariant or passes tests with the help of Tier 1 or Tier 2 hints, or recalls mechanisms with minor gaps.
+- **`2` — Autonomous**: Full independent mastery. Derives the invariant from first principles without hints, writes passing invariant tests, refutes adversarial traps, or navigates upstream source unassisted.
 
 ---
 
 ## 4. Single-Source-of-Truth Competency Schema (No Drifting Derived Fields)
 
-To prevent state desynchronization, `.vllm-learning/competencies.json` stores **only the raw 12-dimensional scores and the last assessed timestamp**. Derived metrics (`mastery_status`, `weakest_dimension`, `next_best_learning_action`) are computed dynamically by the agent at runtime, never stored redundantly.
+To prevent state desynchronization, `.vllm-learning/competencies.json` stores **only the raw 12-dimensional discrete levels {0, 1, 2} and the last assessed timestamp**. Derived metrics (`mastery_status`, `weakest_dimension`, `next_best_learning_action`) are computed dynamically by the agent at runtime, never stored redundantly.
 
 ```json
 {
   "concepts": {
     "autoregressive_decode_memory_bandwidth": {
       "competencies": {
-        "intuition": 0.80,
-        "mathematical_model": 0.70,
-        "toy_implementation": 0.00,
-        "invariant_testing": 0.00,
-        "benchmarking_rigor": 0.00,
-        "kernel_profiling": 0.00,
-        "production_tracing": 0.00,
-        "trade_off_analysis": 0.00,
-        "debugging_isolation": 0.00,
-        "adversarial_defense": 0.00,
-        "teach_back": 0.00,
-        "independence": 0.60
+        "intuition": 2,
+        "mathematical_model": 2,
+        "toy_implementation": 1,
+        "invariant_testing": 1,
+        "benchmarking_rigor": 0,
+        "kernel_profiling": 0,
+        "production_tracing": 0,
+        "trade_off_analysis": 0,
+        "debugging_isolation": 0,
+        "adversarial_defense": 0,
+        "teach_back": 0,
+        "independence": 1
       },
       "last_assessed": "2026-09-14T01:10:00Z"
     }
@@ -74,8 +72,11 @@ To prevent state desynchronization, `.vllm-learning/competencies.json` stores **
 
 ### Dynamic NBLA Derivation
 When deciding the Next-Best-Learning-Action (NBLA):
-1. Find the active concept's dimension with the lowest score ($< 0.70$).
-2. If `intuition` or `mathematical_model` is lowest -> Execute Core Block (Q&A).
-3. If `toy_implementation` or `invariant_testing` is lowest -> Execute Evidence Block (Coding).
-4. If `production_tracing` is lowest -> Execute Production Mapping Block (Source Drill).
-5. If all dimensions $\ge 0.70$ and `adversarial_defense` $< 0.90$ -> Execute Mastery Block (Adversarial Challenge).
+1. Identify dimensions for the active concept where score is `0`:
+   - If `intuition` or `mathematical_model` is `0` -> Execute Core Block (Q&A derivation).
+   - If `toy_implementation` or `invariant_testing` is `0` -> Execute Evidence Block (Interface stub & failing tests).
+   - If `production_tracing` is `0` -> Execute Production Mapping Block (Upstream code drill).
+2. If all core dimensions are `1`:
+   - Provide Tier 2/3 fading scaffolding to move them to `2`.
+3. If all dimensions reach `2`:
+   - Execute Mastery Block (Adversarial challenge & teach-back), then advance to the next stage.

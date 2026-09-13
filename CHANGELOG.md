@@ -5,6 +5,19 @@ All notable changes to the skills in this repository will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.1.0] - 2026-09-14
+
+### Fixed
+- **KV Cache Mathematical Correctness**: Fixed formula overcount in `curriculum/roadmap.md` to `2 * n_layers * n_kv_heads * d_head * seq_len * precision_bytes`, explicitly capturing Key & Value tensors and GQA/MQA memory reductions (e.g. 8× reduction on Llama-3-70B).
+- **Physical Waste Bounding**: Replaced misleading "zero waste" claims with mathematically rigorous `<4% waste, strictly bounded to terminal block internal fragmentation: (block_size / 2) / seq_len`.
+- **Tool-Bound `[VERIFIED]` Enforcement**: Prohibited emitting `[VERIFIED]` claim tags unless an active tool call in the session returned the primary-source evidence.
+
+### Changed
+- **Discrete 3-Level Competency Model**: Replaced unstable 2-decimal floats with observable discrete states `{0: None, 1: Scaffolded, 2: Autonomous}` in `protocols/state_tracking.md` and schema.
+- **Standard Agent Skills Frontmatter**: Folded `use-when` trigger conditions directly into `description` in `SKILL.md` for native matching across Claude Code, Cursor, and Antigravity.
+- **Repository Bootstrap Guidance**: Added explicit checkout bootstrap and commit-pinning directives in `protocols/production_mapping.md`.
+- **Website Modernization**: Updated hero terminal to modern `vllm/v1/core/kv_cache_manager.py`, eliminated vaporware catalog cards, and unified all version references to `v2.1.0`.
+
 ## [v2.0.1] - 2026-09-14
 
 ### Changed
