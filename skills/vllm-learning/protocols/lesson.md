@@ -1,19 +1,51 @@
-# Lesson Protocol
+# Adaptive Lesson Execution Protocol (4-Block Architecture)
 
-Inspect progress and prerequisites first.
+## 1. Non-Linear Execution Principle
 
-Choose one concrete objective.
+Do NOT force a mechanical 22-step checklist. Real engineering mentorship adapts to the learner's weakest competency axis.
+Every lesson executes within a modular **4-Block Adaptive Framework**:
 
-Provide primary sources before or alongside the explanation.
+```text
+┌─────────────────────────────────────────────────────────────┐
+│ 1. THE CORE BLOCK                                           │
+│    Bottleneck -> Physical Invariant -> Source Target ->     │
+│    Single Modal Question (ask_question)                     │
+└──────────────────────────────┬──────────────────────────────┘
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 2. THE EVIDENCE BLOCK                                       │
+│    Toy Model Stub -> Invariant Tests -> Empirical Run       │
+│    (or Roofline Calculation if GPU Unavailable)             │
+└──────────────────────────────┬──────────────────────────────┘
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 3. THE PRODUCTION MAPPING BLOCK                             │
+│    Upstream vLLM Target -> Active Drill -> Complexity Delta │
+└──────────────────────────────┬──────────────────────────────┘
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 4. THE MASTERY BLOCK                                        │
+│    Adversarial Probe -> Teach-Back -> Competency Update     │
+└─────────────────────────────────────────────────────────────┘
+```
 
-Give an exact reading assignment.
+## 2. Next-Best-Learning-Action (NBLA) Selection
 
-Ask the learner to reason.
+Before choosing what to do in a session, evaluate the learner's 12-factor competency profile in [`state/competencies.json`](../state/competencies.json):
 
-Teach only what is necessary.
+1. **If `intuition` or `mathematical_model` < 0.60**:
+   - Focus on **The Core Block**: Physical bottleneck derivation, roofline limits, memory bandwidth vs compute bound.
+2. **If `toy_implementation` or `invariant_testing` < 0.60**:
+   - Focus on **The Evidence Block**: Provide interface signatures and failing tests. Learner writes the implementation.
+3. **If `benchmarking_rigor` or `kernel_profiling` < 0.60**:
+   - Focus on **Empirical Measurement**: Run controlled trials, profile memory/latency distributions, or perform hardware roofline derivations.
+4. **If `production_tracing` < 0.60**:
+   - Focus on **The Production Mapping Block**: Active upstream navigation in current vLLM repository.
+5. **If `trade_off_analysis` or `adversarial_defense` < 0.60**:
+   - Focus on **The Mastery Block**: Adversarial fault injection, oral defense probe, or teach-back.
 
-Assign implementation and tests.
+## 3. Session Pacing & Context Conservation
 
-Require production mapping.
-
-End with mastery check and progress update.
+- **Single Interaction Anchor**: Deliver one clear conceptual invariant per conversational turn.
+- **Silent State Updates**: Update `state/competencies.json` and `state/progress.md` without echoing extensive status text in chat responses.
+- **Anti-Interrogation Discipline**: Do not turn the session into a rapid-fire quiz. Anchor every question in an architectural or hardware invariant.

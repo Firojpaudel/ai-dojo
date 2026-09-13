@@ -5,6 +5,21 @@ All notable changes to the skills in this repository will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.0.0] - 2026-09-14
+
+### Added
+- **Adaptive 4-Block Learning Architecture**: Replaced rigid 22-step linear checklist with modular Core, Evidence, Production Mapping, and Mastery blocks driven by the Next-Best-Learning-Action (NBLA) engine.
+- **Dynamic 12-Factor Competency Modeling**: Added `state/competencies.json` schema and `protocols/state_tracking.md` to continuously score and track multi-dimensional learner abilities.
+- **Persistent Systems Misconception Tracking**: Added `state/misconceptions.json` for recording diagnosed mental models with ground-truth invariants and remediation gates.
+- **Anti-Dependency & Scaffolding Fading**: Added Section 15 to `SKILL.md` and upgraded `protocols/implementation.md` with interface contracts, failing unit tests, and a 3-tier hinting ladder.
+- **Hardware Fallback & Roofline Emulation**: Added Section 16 to `SKILL.md` and upgraded `protocols/benchmarking.md` for CPU tensor emulation and theoretical arithmetic intensity roofline derivations when NVIDIA GPUs are unavailable.
+- **The 9-Level Abstraction Ladder**: Added Section 17 to `SKILL.md` and `protocols/abstraction_ladder.md` with explicit upshift and downshift operational directives.
+- **Adversarial Defense & Fault Injection**: Added `protocols/adversarial_defense.md` and `templates/adversarial_challenge.md` covering injected defects, misleading benchmarks, and false optimization challenges.
+- **Empirical Benchmarking Specification**: Upgraded `protocols/benchmarking.md` and `templates/experiment.md` with telemetry, locked GPU clocks, warmup iterations, synchronization, and latency distributions (p50/p90/p99).
+
+### Changed
+- **Zero-Hardcoding Guarantee**: Reset all state files to clean, unpolluted initial schemas; all paths evaluated and recorded by the agent are strictly relative.
+
 ## [v1.0.1] - 2026-09-14
 
 ### Changed

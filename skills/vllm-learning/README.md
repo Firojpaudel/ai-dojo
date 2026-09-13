@@ -1,4 +1,4 @@
-# AI Systems Apprenticeship — vLLM Learning Skill (v1.0.1)
+# AI Systems Apprenticeship — vLLM Learning Skill (v2.0.0)
 
 A modular Agent Skill for learning modern AI inference systems deeply, using vLLM as the primary laboratory.
 

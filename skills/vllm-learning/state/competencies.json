@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LearnerCompetenciesState",
+  "description": "Dynamic multi-dimensional competency tracker for AI Dojo learners.",
+  "schema_version": "2.0.0",
+  "learner_id": null,
+  "created_at": null,
+  "last_updated": null,
+  "dimensions": [
+    "intuition",
+    "mathematical_model",
+    "toy_implementation",
+    "invariant_testing",
+    "benchmarking_rigor",
+    "kernel_profiling",
+    "production_tracing",
+    "trade_off_analysis",
+    "debugging_isolation",
+    "adversarial_defense",
+    "teach_back",
+    "independence"
+  ],
+  "active_stage": null,
+  "concepts": {}
+}

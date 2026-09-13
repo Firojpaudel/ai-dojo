@@ -1,17 +1,16 @@
-# Learning Progress
-This file is a living state document tracking mastery across curriculum levels.
+# Learning Progress & Mastery State
+
+This living document tracks overall curriculum progression. Real-time multi-dimensional competency scores and active misconception logs are dynamically recorded in [`state/competencies.json`](state/competencies.json) and [`state/misconceptions.json`](state/misconceptions.json).
+
 ---
-## Active Stage: Level 0 — The Problem vLLM Solves
-- **Curriculum Stages**: Stage 2 (Transformer inference) & Stage 3 (Inference execution)
-- **Directory**: `./level0_naive/`
-- **Focus**: Baseline naive generation, prefill vs. decode asymmetry, KV cache memory footprint.
-- **Exposure**: Active
-- **Explanation Ability**: In Progress (Testing reasoning on O(N²) memory copying & static allocation OOM)
-- **Implementation Ability**: Pending learner code in `./level0_naive/naive_generator.py`
-- **Testing Ability**: Pending passing `./level0_naive/test_naive.py`
-- **Benchmarking Ability**: Pending running `./level0_naive/benchmark_naive.py`
-- **Production-Source Navigation**: Mapped in `./level0_naive/SOURCE_MAP.md`
-- **Trade-off Reasoning**: In Progress
-- **Confidence**: Developing
-- **Mastery Status**: Not yet completed (Gated per §1.12)
-- **Last Verified Date**: 2026-09-13
+
+## Active Session
+- **Active Stage**: Uninitialized (Awaiting initial diagnostic or learner command)
+- **Learner Workspace Directory**: Pending assignment
+- **Focus**: Pending
+- **Exposure**: None
+- **Active Competency Summary**: None recorded yet
+- **Next-Best-Learning-Action (NBLA)**: Run initial diagnostic / prerequisite assessment
+- **Mastery Status**: Not started
+- **Active Misconceptions**: None diagnosed
+- **Last Verified Date**: None
