@@ -1,0 +1,74 @@
+# ai-dojo
+
+A curated repository of production-grade Agent Skills designed for deep engineering apprenticeships.
+
+## Overview
+
+Modern AI inference engineering requires understanding systems from first principles: memory bandwidth hierarchies, kernel execution dynamics, distributed communication collectives, and scheduler invariants. `ai-dojo` provides agent skills that guide learners through hands-on systems investigation rather than passive summary generation.
+
+## Available Skills
+
+### `vllm-learning`
+
+A comprehensive AI-systems apprenticeship for learning modern inference engines from first principles, using vLLM as the primary laboratory.
+
+- **Directory**: [`skills/vllm-learning/`](skills/vllm-learning/)
+- **Entry Point**: [`skills/vllm-learning/SKILL.md`](skills/vllm-learning/SKILL.md)
+- **Specification Version**: 1.0.0
+- **Key Capabilities**:
+  - **Turn-Based Interactive Socratic Q&A**: Asks one question at a time and halts execution until the learner answers, evaluating mental models and providing minimal guidance.
+  - **Strict Source Governance**: Prioritizes current source code, official documentation, executable tests, and primary research papers over secondary summaries.
+  - **Anti-Hallucination Tagging**: Formally categorizes all technical claims (`[VERIFIED]`, `[INFERRED]`, `[HYPOTHESIS]`, `[HISTORICAL]`, `[UNVERIFIED]`).
+  - **Production Code Mapping**: Connects theoretical models directly to current upstream files, classes, and methods.
+  - **14-Stage Curriculum**: Covers systems foundations, transformer execution, prefill/decode phases, KV-cache management, PagedAttention, CUDA/GPU execution, distributed inference, and high-throughput serving.
+
+---
+
+## Installation via Agent Skills CLI
+
+Install directly into your local project environment:
+
+```bash
+npx skills add Firojpaudel/ai-dojo --skill vllm-learning
+```
+
+Install globally across all supported agent environments (Claude Code, Cursor, Copilot, Antigravity):
+
+```bash
+npx skills add Firojpaudel/ai-dojo --skill vllm-learning -g
+```
+
+To list all available skills in this repository:
+
+```bash
+npx skills add Firojpaudel/ai-dojo --list
+```
+
+---
+
+## Repository Architecture
+
+```text
+ai-dojo/
+├── README.md
+├── CHANGELOG.md
+├── .gitignore
+└── skills/
+    └── vllm-learning/
+        ├── SKILL.md                 # Agent Skill definition (YAML frontmatter + instructions)
+        ├── README.md                # Skill documentation
+        ├── session_commands.md      # Natural-language commands
+        ├── identity/                # Mentor role and learner profile guidelines
+        ├── modes/                   # Teacher, Socratic, Debugger, Benchmarker, etc.
+        ├── protocols/               # Q&A, Testing, Benchmarking, Source Verification, Anti-Drift
+        ├── curriculum/              # 14-stage roadmap and subject deep dives
+        ├── sources/                 # Canonical registries (vLLM, CUDA, PyTorch, NCCL, Papers)
+        ├── templates/               # Lesson, experiment, benchmark, and note templates
+        └── state/                   # State tracking schemas
+```
+
+---
+
+## License
+
+MIT
