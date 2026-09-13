@@ -53,13 +53,17 @@ jobs:
           npx -y skills update vllm-learning -y
 
       - name: Verify all referenced paths resolve
+        shell: bash
         run: |
           fail=0
-          while IFS=: read -r f l p; do
-            [ -e "skills/vllm-learning/$p" ] || { echo "DEAD REF $f:$l -> $p"; fail=1; }
-          done < <(grep -rEon '\./[A-Za-z0-9_/.-]+\.(py|md|json)' skills/vllm-learning/ \
-                   | sed 's|\./||3')
-          grep -rn 'file:///' skills/ && { echo "malformed file:// URI"; fail=1; }
+          cd skills/vllm-learning
+          while IFS= read -r line; do
+            f="${line%%:*}"; rest="${line#*:}"
+            p="${rest#*:}"; p="${p#*](}"; p="${p%)}"
+            [ -e "$p" ] || [ -e "$(dirname "$f")/$p" ] \
+              || { echo "DEAD REF $f -> $p"; fail=1; }
+          done < <(grep -rEon '\]\([A-Za-z0-9_/.-]+\.(md|json|py)\)' .)
+          if grep -rn 'file:///' .; then echo "malformed file:// URI"; fail=1; fi
           exit $fail
 
   github-release:

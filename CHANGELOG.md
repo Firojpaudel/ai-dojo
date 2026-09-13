@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Valid Relative Path Navigation**: Replaced nonexistent `./tests/test_block_table.py` with `./sources/SOURCE_REGISTRY.md` in `protocols/qa_session.md`.
 - **NBLA Threshold Consistency**: Eliminated lingering float `< 0.60` thresholds in `protocols/lesson.md`, delegating dynamic Next-Best-Learning-Action selection directly to discrete levels `{0, 1, 2}` in `protocols/state_tracking.md` Section 4.
 - **Host-Agnostic Tool Capabilities**: Reframed `[VERIFIED]` claim enforcement in `protocols/source_verification.md` and `SKILL.md` from IDE-specific tool identifiers to general capabilities (file-read, code-search, command-execution).
+- **Shallow-Clone Compatible Architecture Mapping**: Updated `protocols/production_mapping.md` to reference V1 design RFCs/documentation rather than git history, preserving compatibility with `--depth 1` checkouts.
 - **Malformed URI Corrected**: Replaced `file:///./` link with standard sibling-relative markdown link `[protocols/state_tracking.md](state_tracking.md)` in `protocols/lesson.md`.
 - **Path Convention Unified**: Standardized path referencing in `protocols/qa_session.md` rule 5 to skill-root-relative (`curriculum/roadmap.md`) and document-relative paths, matching `SKILL.md`.
 - **CI Dead-Reference Guard**: Added automated CI step in `.github/workflows/npx-skills.yml` verifying all referenced paths resolve and asserting zero malformed `file:///` URIs.
