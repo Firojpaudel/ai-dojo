@@ -52,6 +52,16 @@ jobs:
           echo "Testing npx skills update..."
           npx -y skills update vllm-learning -y
 
+      - name: Verify all referenced paths resolve
+        run: |
+          fail=0
+          while IFS=: read -r f l p; do
+            [ -e "skills/vllm-learning/$p" ] || { echo "DEAD REF $f:$l -> $p"; fail=1; }
+          done < <(grep -rEon '\./[A-Za-z0-9_/.-]+\.(py|md|json)' skills/vllm-learning/ \
+                   | sed 's|\./||3')
+          grep -rn 'file:///' skills/ && { echo "malformed file:// URI"; fail=1; }
+          exit $fail
+
   github-release:
     name: Create GitHub Release on Tag
     needs: validate-and-test

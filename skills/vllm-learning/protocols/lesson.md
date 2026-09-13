@@ -31,7 +31,7 @@ Every lesson executes within a modular **4-Block Adaptive Framework**:
 
 ## 2. Next-Best-Learning-Action (NBLA) Selection
 
-Inspect the learner's discrete competency levels in `<workspace_root>/.vllm-learning/competencies.json` and follow the dynamic NBLA derivation rules in [`protocols/state_tracking.md` Section 4](file:///./protocols/state_tracking.md#4-single-source-of-truth-competency-schema-no-drifting-derived-fields).
+Inspect the learner's discrete competency levels in `<workspace_root>/.vllm-learning/competencies.json` and follow the dynamic NBLA derivation rules in [protocols/state_tracking.md](state_tracking.md) Section 4.
 
 ## 3. Session Pacing & Context Conservation
 
