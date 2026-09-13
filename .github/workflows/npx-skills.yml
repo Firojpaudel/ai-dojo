@@ -1,0 +1,102 @@
+name: Agent Skills CI & Automated Distribution
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  validate-and-test:
+    name: Validate & Test npx skills
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify Root and Nested Skill Parity
+        run: |
+          echo "Checking parity between root and skills/vllm-learning/..."
+          diff -u SKILL.md skills/vllm-learning/SKILL.md || { echo "Error: Root SKILL.md and skills/vllm-learning/SKILL.md are out of sync!"; exit 1; }
+          diff -u protocols/qa_session.md skills/vllm-learning/protocols/qa_session.md || { echo "Error: protocols/qa_session.md out of sync!"; exit 1; }
+          diff -u state/progress.md skills/vllm-learning/state/progress.md || { echo "Error: state/progress.md out of sync!"; exit 1; }
+          echo "Parity check passed!"
+
+      - name: Verify npx skills Discovery
+        run: |
+          echo "Verifying local skill discovery with npx skills..."
+          npx -y skills add . -l
+
+      - name: Test Automated Skill Installation & Update
+        run: |
+          echo "Testing simulated agent project installation..."
+          mkdir -p /tmp/test-agent-sandbox
+          cd /tmp/test-agent-sandbox
+          git init
+          
+          echo "Installing vllm-learning skill..."
+          npx -y skills add "$GITHUB_WORKSPACE" --skill vllm-learning -y --copy
+          
+          echo "Listing installed skills..."
+          npx -y skills list
+          
+          echo "Testing npx skills update..."
+          npx -y skills update vllm-learning -y
+
+  github-release:
+    name: Create GitHub Release on Tag
+    needs: validate-and-test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+
+  deploy-docs-pages:
+    name: Deploy ai-dojo Documentation Pages
+    needs: validate-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
