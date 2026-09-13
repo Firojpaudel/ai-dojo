@@ -5,6 +5,16 @@ All notable changes to the skills in this repository will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.0.1] - 2026-09-14
+
+### Changed
+- **Dynamic Runtime Source Grounding**: Purged all deprecated vLLM V0 paths (`block_manager_v1.py`, `core/scheduler.py`) and invented line ranges; instituted the Dynamic Discovery Protocol via runtime grep and commit pinning against active vLLM V1 (`vllm/v1/...`).
+- **Radical File Consolidation**: Pruned 43 redundant stub files (<300 bytes each) and consolidated curriculum, modes, sources, and templates into 25 high-density files; reduced `SKILL.md` size by 42%.
+- **Canonical 14-Stage Roadmap**: Unified divergent stage outlines into one canonical source of truth (Stages 00–13) across `curriculum/roadmap.md`, `SKILL.md`, and `docs/index.html`.
+- **Decoupled Workspace State**: Relocated learner progress persistence out of the package directory into `<workspace_root>/.vllm-learning/` so `npx skills add` updates never clobber learner history; eliminated drifting derived fields.
+- **Host-Aware Turn Halting**: Provided universal question delivery (interactive UI modals when supported, clean chat blocks otherwise) with strict stop-and-wait turn halting across all agent runners.
+- **LaTeX Cleanup & Website Modernization**: Removed all raw LaTeX delimiter leaks across markdown files; brought `docs/index.html` fully up to date with modern V1 scheduler tracing, complete 14-stage curriculum grid, and MIT licensing.
+
 ## [v2.0.0] - 2026-09-14
 
 ### Added

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ai-dojo — AI Systems Skills for Coding Agents</title>
-  <meta name="description" content="ai-dojo is a high-craft collection of modular Agent Skills for mastering AI systems, inference runtimes, and GPU engineering. Flagship skill: vllm-learning v1.0.1.">
+  <meta name="description" content="ai-dojo is a high-craft collection of modular Agent Skills for mastering AI systems, inference runtimes, and GPU engineering. Flagship skill: vllm-learning v2.0.0.">
   
   <!-- Favicon: Torii Gate Minimalist Vector Mark -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23090E17'><path d='M2 5h20v2H2V5zm3 4h14v1.5H5V9zm2 3.5h10v1.5H7v-1.5zM6 16h2v6H6v-6zm10 0h2v6h-2v-6z'/></svg>">
@@ -1379,7 +1379,7 @@
       <div class="hero-left">
         <a href="#curriculum" class="hero-announcement">
           <span class="ann-tag">Flagship</span>
-          <span class="ann-title">vllm-learning v1.0.1 is live</span>
+          <span class="ann-title">vllm-learning v2.0.0 is live</span>
           <span class="ann-arrow">&rarr;</span>
         </a>
 
@@ -1441,7 +1441,7 @@
             <div class="traffic-dot dot-green"></div>
           </div>
           <div class="terminal-title">
-            <span>ai-dojo</span> &bull; <span class="terminal-title-skill">vllm-learning</span>
+            <span>ai-dojo</span> &bull; <span class="terminal-title-skill">vllm-learning v2.0</span>
           </div>
           <div class="terminal-header-spacer"></div>
         </div>
@@ -1483,9 +1483,9 @@
               <span class="term-tag tag-verified">CORRECT REASONING</span>
             </div>
             <p class="term-body-text">
-              Inspect the production source before answering the next question:<br>
-              <span class="term-tag tag-target">TARGET</span> <span class="term-code-path">vllm/core/block_manager_v1.py:95-142</span> &rarr; class BlockManagerV1.<br>
-              What invariant does the block table maintain between logical and physical blocks?<span class="term-cursor"></span>
+              Locate the active production scheduler in vLLM V1:<br>
+              <span class="term-tag tag-target">DYNAMIC TARGET</span> <span class="term-code-path">vllm/v1/core/sched/scheduler.py</span> &rarr; class Scheduler.<br>
+              What invariant does the scheduler enforce when token budgets exhaust during chunked prefill?<span class="term-cursor"></span>
             </p>
           </div>
         </div>
@@ -1505,10 +1505,10 @@
           <div>
             <div class="catalog-head">
               <span class="catalog-title">vllm-learning</span>
-              <span class="catalog-pill-status status-live">v1.0.1 &bull; Live</span>
+              <span class="catalog-pill-status status-live">v2.0.0 &bull; Live</span>
             </div>
             <p class="catalog-desc">
-              The flagship 14-stage inference engine apprenticeship. Continuous batching, PagedAttention v1/v2, chunked prefill, and BlockManager invariants.
+              The flagship 14-stage AI systems apprenticeship. Adaptive 4-block engine, dynamic 12-factor competency tracking, modern vLLM V1 source grounding, and virtual roofline fallback.
             </p>
           </div>
           <div class="catalog-cmd-chip">
@@ -1569,8 +1569,8 @@
               <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
           </div>
-          <h3>Turn-Based Q&amp;A</h3>
-          <p>Asks one rigorous question at a time and stops. Evaluates your reasoning before offering minimal calibrated hints.</p>
+          <h3>Turn-Based Halting</h3>
+          <p>Asks one rigorous question at a time and strictly stops. Evaluates reasoning across a 5-way taxonomy before minimal hinting.</p>
         </div>
 
         <div class="pillar-box stagger-2 scroll-reveal">
@@ -1582,8 +1582,8 @@
               <line x1="16" y1="17" x2="8" y2="17"></line>
             </svg>
           </div>
-          <h3>Source Governance</h3>
-          <p>Grounded in primary code, official design RFCs, tests, and original papers over third-party summaries.</p>
+          <h3>Dynamic Source Grounding</h3>
+          <p>Grounded in active checkouts and verified commit hashes via dynamic grep. Zero stale paths or invented line numbers.</p>
         </div>
 
         <div class="pillar-box stagger-3 scroll-reveal">
@@ -1593,8 +1593,8 @@
               <polyline points="8 6 2 12 8 18"></polyline>
             </svg>
           </div>
-          <h3>Production Tracing</h3>
-          <p>Directs you to exact files, classes, and methods in upstream repositories before explaining mechanics.</p>
+          <h3>Anti-Dependency Fading</h3>
+          <p>Provides interface stubs and failing test suites. The learner writes the logic, guided by a 3-tier calibrated hinting ladder.</p>
         </div>
 
         <div class="pillar-box stagger-4 scroll-reveal">
@@ -1603,8 +1603,8 @@
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
           </div>
-          <h3>Empirical Verification</h3>
-          <p>Validates reasoning through reproduction scripts, profilers (Nsight), and concrete benchmarks.</p>
+          <h3>Empirical Rigor &amp; Roofline</h3>
+          <p>Validates assertions through locked-clock GPU telemetry, profilers (Nsight), or analytical virtual roofline derivations.</p>
         </div>
       </div>
     </section>
@@ -1620,28 +1620,35 @@
         <!-- Track 1 -->
         <div class="track-card stagger-1 scroll-reveal">
           <div class="track-header-row">
-            <span class="track-title">Track 1: Foundations &amp; The KV-Cache Problem</span>
-            <span class="track-badge">Stages 01&ndash;03</span>
+            <span class="track-title">Track 1: Foundations &amp; Core Execution</span>
+            <span class="track-badge">Stages 00&ndash;03</span>
+          </div>
+          <div class="stage-row">
+            <span class="stage-num-tag">00</span>
+            <div class="stage-info">
+              <h4>Systems Foundations</h4>
+              <p>Linux systems, process/thread models, memory hierarchies (registers, caches, DRAM), and OS paging.</p>
+            </div>
           </div>
           <div class="stage-row">
             <span class="stage-num-tag">01</span>
             <div class="stage-info">
-              <h4>Modern LLM Architecture &amp; Prefill vs Decode</h4>
-              <p>Autoregressive mechanics, quadratic compute, memory bandwidth limits, and arithmetic intensity.</p>
+              <h4>Deep Learning Execution &amp; Tensors</h4>
+              <p>PyTorch runtime internals, tensor layouts, strides, PCIe vs. HBM transfer bottlenecks, and pinned memory.</p>
             </div>
           </div>
           <div class="stage-row">
             <span class="stage-num-tag">02</span>
             <div class="stage-info">
-              <h4>The KV-Cache Problem</h4>
-              <p>KV-cache footprint equations, token generation memory consumption, and concurrency ceilings.</p>
+              <h4>Transformer Inference Mechanics</h4>
+              <p>Autoregressive loop, causal masking, MHA/MQA/GQA, token projection FLOPs, and logit sampling.</p>
             </div>
           </div>
           <div class="stage-row">
             <span class="stage-num-tag">03</span>
             <div class="stage-info">
-              <h4>Memory Fragmentation &amp; Inefficiency</h4>
-              <p>Internal reservation waste, external lifetime fragmentation, and 60-80% naive memory waste.</p>
+              <h4>Prefill vs Decode &amp; KV Cache Bottleneck</h4>
+              <p>Compute vs. bandwidth asymmetry, footprint equations, and internal vs. external memory fragmentation.</p>
             </div>
           </div>
         </div>
@@ -1800,7 +1807,7 @@
           <div class="dojo-seal-card">
             <div class="dojo-seal-top">
               <img src="ai-dojo.png" alt="ai-dojo standard" class="dojo-seal-img">
-              <span class="dojo-seal-pill">Standard v1.0</span>
+              <span class="dojo-seal-pill">Standard v2.0</span>
             </div>
             <p class="dojo-seal-desc">
               Universal Agent Skills specification. Source-grounded apprenticeship instructions, upstream repo pointers, and strict turn-based halting.
@@ -1827,9 +1834,9 @@
                 </button>
               </div>
               <div class="prompt-text-content" id="prompt-p1">
-                I want to start the vLLM learning apprenticeship from stage 1. Run in turn-based mentor mode: ask me one rigorous question at a time, verify my reasoning, and halt until I answer.
+                I want to start the vLLM learning apprenticeship from stage 0. Run in turn-based mentor mode: ask me one rigorous question at a time, verify my reasoning, and halt until I answer.
               </div>
-              <div class="prompt-notes">Launches Stage 01 with turn-based halting protocol enabled.</div>
+              <div class="prompt-notes">Launches Stage 00 with turn-based halting protocol enabled.</div>
             </div>
 
             <div class="prompt-block">
@@ -1840,7 +1847,7 @@
                 </button>
               </div>
               <div class="prompt-text-content" id="prompt-p2">
-                Teach me Stage 04: PagedAttention &amp; Virtual Memory from vllm-learning. Point me to upstream files in vLLM repo and question me on the block table invariants.
+                Teach me Stage 05: Paged KV Memory &amp; PagedAttention from vllm-learning. Point me to upstream files in vLLM repo and question me on the block table invariants.
               </div>
               <div class="prompt-notes">Jumps directly into memory architecture &amp; source code inspection.</div>
             </div>
@@ -1853,9 +1860,9 @@
                 </button>
               </div>
               <div class="prompt-text-content" id="prompt-p3">
-                Use the vllm-learning skill to trace how BlockManagerV1 in vllm/core/block_manager_v1.py handles copy-on-write during parallel sampling.
+                Use the vllm-learning skill to trace how the modern V1 scheduler in vllm/v1/core/sched/scheduler.py co-schedules chunked prefills and decode steps under memory pressure.
               </div>
-              <div class="prompt-notes">Targeted inspection of upstream implementation mechanics.</div>
+              <div class="prompt-notes">Targeted inspection of active upstream V1 implementation mechanics.</div>
             </div>
           </div>
         </div>
@@ -1869,7 +1876,7 @@
       <div class="footer-meta">
         <img src="ai-dojo.png" alt="ai-dojo" class="footer-logo-img">
         <span class="footer-copy">Source-grounded AI systems apprenticeship skills for coding agents.</span>
-        <span class="footer-license">Apache 2.0 License &bull; Maintained by Firoj Paudel</span>
+        <span class="footer-license">MIT License &bull; Maintained by Firoj Paudel</span>
       </div>
       <div class="footer-nav-row">
         <a href="#skills">Skills</a>

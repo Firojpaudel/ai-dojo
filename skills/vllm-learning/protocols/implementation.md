@@ -25,7 +25,7 @@ Before writing any code, the learner must define:
 - **Outputs**: Return values, mutated buffers, and return shapes.
 - **Internal State**: Data structures, tables, reference counters, and locks.
 - **Core Invariant**: The physical or logical law that must hold true before and after every operation.
-- **Complexity Targets**: Time complexity $O(\cdot)$ and Space complexity $O(\cdot)$ per token or step.
+- **Complexity Targets**: Time complexity O(...) and Space complexity O(...) per token or step.
 
 ## 3. Minimal Viable Model Progression
 

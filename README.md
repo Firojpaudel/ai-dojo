@@ -14,16 +14,17 @@ A comprehensive AI-systems apprenticeship for learning modern inference engines 
 
 - **Directory**: [`skills/vllm-learning/`](skills/vllm-learning/)
 - **Entry Point**: [`skills/vllm-learning/SKILL.md`](skills/vllm-learning/SKILL.md)
-- **Specification Version**: 2.0.0
+- **Specification Version**: 2.0.1
 - **Key Capabilities**:
   - **Adaptive 4-Block Learning Architecture**: Modular Core, Evidence, Production Mapping, and Mastery blocks driven dynamically by the Next-Best-Learning-Action (NBLA) engine.
   - **Dynamic 12-Factor Competency Modeling**: Real-time continuous scoring across intuition, math, code, testing, benchmarking, profiling, and production tracing.
   - **Persistent Systems Misconception Tracking**: Explicit diagnosis, logging, and remediation gating for systems fallacies.
   - **Anti-Dependency & Scaffolding Fading**: Enforces interface contracts, failing unit tests, and a 3-tier hinting ladder to maximize learner autonomy.
-  - **Turn-Based Interactive Modal Q&A**: Asks one question at a time using interactive UI modals (`ask_question`) and halts execution until the learner answers.
+  - **Turn-Based Single-Question Halting**: Host-aware questioning (interactive UI modals when supported, clean chat blocks otherwise) that strictly halts execution until the learner answers.
   - **Strict Source Governance**: Prioritizes current source code, official documentation, executable tests, and primary research papers over secondary summaries.
   - **Anti-Hallucination Tagging**: Formally categorizes all technical claims (`[VERIFIED]`, `[INFERRED]`, `[HYPOTHESIS]`, `[HISTORICAL]`, `[UNVERIFIED]`).
-  - **Production Code Mapping**: Connects theoretical models directly to current upstream files, classes, and methods.
+  - **Dynamic Production Source Grounding**: Discovers upstream entry points in active checkouts via runtime grep and commit pinning, eliminating stale paths.
+  - **Decoupled Workspace State**: Persists learner progress in `<workspace_root>/.vllm-learning/`, safe from package reinstallation.
   - **Hardware Fallback & Roofline Mode**: CPU tensor emulation and theoretical arithmetic intensity roofline derivations when NVIDIA GPUs are unavailable.
 
 ---

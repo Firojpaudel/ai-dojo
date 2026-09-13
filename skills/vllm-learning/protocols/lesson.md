@@ -2,14 +2,14 @@
 
 ## 1. Non-Linear Execution Principle
 
-Do NOT force a mechanical 22-step checklist. Real engineering mentorship adapts to the learner's weakest competency axis.
+Do NOT force a mechanical 22-step checklist. Real systems mentorship adapts dynamically to the learner's weakest competency axis.
 Every lesson executes within a modular **4-Block Adaptive Framework**:
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
 │ 1. THE CORE BLOCK                                           │
 │    Bottleneck -> Physical Invariant -> Source Target ->     │
-│    Single Modal Question (ask_question)                     │
+│    Single Diagnostic Question (ask_question or chat block)  │
 └──────────────────────────────┬──────────────────────────────┘
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
@@ -20,7 +20,7 @@ Every lesson executes within a modular **4-Block Adaptive Framework**:
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ 3. THE PRODUCTION MAPPING BLOCK                             │
-│    Upstream vLLM Target -> Active Drill -> Complexity Delta │
+│    Dynamic Upstream Target -> Active Drill -> Delta         │
 └──────────────────────────────┬──────────────────────────────┘
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
@@ -31,7 +31,7 @@ Every lesson executes within a modular **4-Block Adaptive Framework**:
 
 ## 2. Next-Best-Learning-Action (NBLA) Selection
 
-Before choosing what to do in a session, evaluate the learner's 12-factor competency profile in [`state/competencies.json`](../state/competencies.json):
+Before choosing the action for a turn, inspect the learner's competency scores in `<workspace_root>/.vllm-learning/competencies.json`:
 
 1. **If `intuition` or `mathematical_model` < 0.60**:
    - Focus on **The Core Block**: Physical bottleneck derivation, roofline limits, memory bandwidth vs compute bound.
@@ -40,12 +40,12 @@ Before choosing what to do in a session, evaluate the learner's 12-factor compet
 3. **If `benchmarking_rigor` or `kernel_profiling` < 0.60**:
    - Focus on **Empirical Measurement**: Run controlled trials, profile memory/latency distributions, or perform hardware roofline derivations.
 4. **If `production_tracing` < 0.60**:
-   - Focus on **The Production Mapping Block**: Active upstream navigation in current vLLM repository.
+   - Focus on **The Production Mapping Block**: Active upstream navigation in the current vLLM repository.
 5. **If `trade_off_analysis` or `adversarial_defense` < 0.60**:
    - Focus on **The Mastery Block**: Adversarial fault injection, oral defense probe, or teach-back.
 
 ## 3. Session Pacing & Context Conservation
 
 - **Single Interaction Anchor**: Deliver one clear conceptual invariant per conversational turn.
-- **Silent State Updates**: Update `state/competencies.json` and `state/progress.md` without echoing extensive status text in chat responses.
+- **Silent State Updates**: Update `.vllm-learning/competencies.json` and `.vllm-learning/progress.md` without echoing extensive status text in chat responses.
 - **Anti-Interrogation Discipline**: Do not turn the session into a rapid-fire quiz. Anchor every question in an architectural or hardware invariant.

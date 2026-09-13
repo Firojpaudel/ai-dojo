@@ -1,37 +1,62 @@
-# Production Mapping Protocol
+# Production Mapping & Dynamic Source Grounding Protocol
 
 ## Core Purpose
 
-Bridge the gap between theoretical models / toy implementations and production systems code.
+Bridge the gap between theoretical models, toy implementations, and active production systems code without relying on stale, brittle, or hardcoded file paths.
 
-## Mandatory Source-to-Source Map
+---
 
-For every major inference mechanism covered, build and maintain this exact map:
+## 1. Dynamic Runtime Source Discovery (Non-Negotiable)
+
+Source-grounded engineering means grounded at **runtime**, not authoring time. Because production runtimes like vLLM evolve rapidly, the agent and learner must never assume static file paths or invent line numbers.
+
+### The Dynamic Discovery Cycle
+1. **Search the Active Checkout**: Use ripgrep or grep tools to locate the target symbol or entry point in the current repository:
+   ```bash
+   # Example: locate the modern V1 scheduler entry point
+   git grep "class .*Scheduler" vllm/v1/
+   ```
+2. **State Ground-Truth Metadata**: Always record:
+   - **Repository & Commit Hash**: e.g., `vllm @ commit 7a8b9c...` (or current active release tag).
+   - **Target File Path**: Verified in the active repository checkout (e.g., `vllm/v1/core/sched/scheduler.py`).
+   - **Target Class / Function**: e.g., `Scheduler.schedule()` or `KVBlockAllocator`.
+3. **Never Invent Line Numbers**: Direct the learner to semantic landmarks (class definitions, method names, loop invariants) rather than volatile static line ranges.
+
+---
+
+## 2. Mandatory Source-to-Source Triangulation Map
+
+For every major inference mechanism covered, build and maintain this verified map:
 
 ```text
 CONCEPT
 ├── theory / original paper
-├── official documentation
-├── current production source
-│   ├── exact file
-│   └── exact class/function
-├── relevant test (executable specification)
-├── relevant benchmark (measured performance)
-├── historical implementation if useful (evolution)
-└── related GPU/system primitive (hardware ground truth)
+├── official documentation / RFC
+├── current production source (VERIFIED at active commit)
+│   ├── exact verified file path
+│   └── exact class and method name
+├── relevant test (executable specification in tests/)
+├── relevant benchmark (measured performance in benchmarks/)
+├── historical evolution (why legacy v0 was replaced by v1)
+└── underlying GPU/hardware primitive (HBM, SRAM, NVLink, CUDA stream)
 ```
 
-## Active Navigation Directive
+---
 
-The agent must never merely paste large production code blocks with a passive explanation. Instead, enforce the active navigation cycle:
+## 3. Active Navigation Directive
 
-1. **Direct the learner**:
-   - *"Open `vllm/core/scheduler.py`."*
-   - *"Find the `Scheduler._schedule_running()` method."*
-   - *"Read lines 320 to 365."*
-2. **Elicit learner hypothesis first**:
-   - *"Before I explain it, tell me what you think this loop is enforcing when memory pressure occurs."*
-3. **Analyze differences**:
-   - Explicitly compare why production code is more complex than the toy model (e.g., chunked prefill, preemption, speculative drafting, tensor parallel sync).
-4. **Current-version awareness**:
-   - Distinguish: Original Paper Architecture ≠ Historical vLLM Implementation (v0 engine) ≠ Current vLLM Production Implementation (v1 engine).
+Never paste large dumps of production code with passive lectures. Enforce active navigation:
+
+1. **Direct the Learner**:
+   - *"Grep for `class <TargetClass>` in `<subsystem_dir>`."*
+   - *"Open `<verified_file>` and locate method `<target_method>`."*
+   - *"Inspect the loop handling preemption or memory exhaustion."*
+2. **Elicit Hypothesis Before Explaining**:
+   - *"Before I explain it, what system invariant does this check enforce when free blocks reach zero?"*
+3. **Analyze Complexity Delta**:
+   - Compare the production implementation against the learner's toy model: why did production add complexity? (e.g., chunked prefill co-scheduling, multi-worker coordination, CUDA graph capture compatibility).
+4. **Engine Generation Awareness**:
+   - Strictly distinguish:
+     - **Paper Architecture**: The algorithmic concept (e.g., PagedAttention 2023 SOSP paper).
+     - **Historical vLLM (V0)**: Legacy Ray worker, asyncio scheduler, discrete prefill/decode batches (deprecated/deleted).
+     - **Modern vLLM (V1)**: Multiprocessing core, unified block management, chunked prefill by default.
