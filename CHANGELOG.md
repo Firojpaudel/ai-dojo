@@ -5,6 +5,15 @@ All notable changes to the skills in this repository will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.2.0] - 2026-09-14
+
+### Fixed
+- **Phantom File References Purged**: Removed fabricated laboratory filenames (`block_allocator.py`, `test_block_allocator.py`, `benchmark_fragmentation.py`) in `curriculum/roadmap.md` Stage 05, keeping skills purely instructional without committing raw code stubs into the skill package.
+- **Valid Relative Path Navigation**: Replaced nonexistent `./tests/test_block_table.py` with `./sources/SOURCE_REGISTRY.md` in `protocols/qa_session.md`.
+- **NBLA Threshold Consistency**: Eliminated lingering float `< 0.60` thresholds in `protocols/lesson.md`, delegating dynamic Next-Best-Learning-Action selection directly to discrete levels `{0, 1, 2}` in `protocols/state_tracking.md` Section 4.
+- **Host-Agnostic Tool Capabilities**: Reframed `[VERIFIED]` claim enforcement in `protocols/source_verification.md` and `SKILL.md` from IDE-specific tool identifiers to general capabilities (file-read, code-search, command-execution).
+- **Shallow-Clone Compatible Architecture Mapping**: Updated `protocols/production_mapping.md` to reference V1 design RFCs/documentation rather than git history, preserving compatibility with `--depth 1` checkouts.
+
 ## [v2.1.0] - 2026-09-14
 
 ### Fixed

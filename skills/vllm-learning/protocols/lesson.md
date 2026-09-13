@@ -31,18 +31,7 @@ Every lesson executes within a modular **4-Block Adaptive Framework**:
 
 ## 2. Next-Best-Learning-Action (NBLA) Selection
 
-Before choosing the action for a turn, inspect the learner's competency scores in `<workspace_root>/.vllm-learning/competencies.json`:
-
-1. **If `intuition` or `mathematical_model` < 0.60**:
-   - Focus on **The Core Block**: Physical bottleneck derivation, roofline limits, memory bandwidth vs compute bound.
-2. **If `toy_implementation` or `invariant_testing` < 0.60**:
-   - Focus on **The Evidence Block**: Provide interface signatures and failing tests. Learner writes the implementation.
-3. **If `benchmarking_rigor` or `kernel_profiling` < 0.60**:
-   - Focus on **Empirical Measurement**: Run controlled trials, profile memory/latency distributions, or perform hardware roofline derivations.
-4. **If `production_tracing` < 0.60**:
-   - Focus on **The Production Mapping Block**: Active upstream navigation in the current vLLM repository.
-5. **If `trade_off_analysis` or `adversarial_defense` < 0.60**:
-   - Focus on **The Mastery Block**: Adversarial fault injection, oral defense probe, or teach-back.
+Inspect the learner's discrete competency levels in `<workspace_root>/.vllm-learning/competencies.json` and follow the dynamic NBLA derivation rules in [`protocols/state_tracking.md` Section 4](file:///./protocols/state_tracking.md#4-single-source-of-truth-competency-schema-no-drifting-derived-fields).
 
 ## 3. Session Pacing & Context Conservation
 

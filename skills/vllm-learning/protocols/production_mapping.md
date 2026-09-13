@@ -43,7 +43,7 @@ CONCEPT
 │   └── exact class and method name
 ├── relevant test (executable specification in tests/)
 ├── relevant benchmark (measured performance in benchmarks/)
-├── historical evolution (why legacy v0 was replaced by v1)
+├── architectural evolution (why legacy v0 was replaced by v1, citing V1 design RFCs / docs)
 └── underlying GPU/hardware primitive (HBM, SRAM, NVLink, CUDA stream)
 ```
 

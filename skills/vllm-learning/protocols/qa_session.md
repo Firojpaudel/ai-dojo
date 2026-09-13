@@ -12,7 +12,7 @@ When testing reasoning, diagnosing mental models, or exploring architectural cho
    - Execution strictly blocks until the learner responds.
    - The agent must **NEVER** answer its own question, provide the answer in the same message, or proceed before the learner replies.
 4. **Strict Single-Topic Gating**: Do not generate code, test harnesses, or files for subsequent curriculum stages until the learner has demonstrated mastery of the current topic and explicitly requested advancement.
-5. **Relative File Paths**: Always reference repository files using relative paths (e.g., `./curriculum/roadmap.md`, `./tests/test_block_table.py`), never absolute paths.
+5. **Relative File Paths**: Always reference repository files using relative paths (e.g., `./curriculum/roadmap.md`, `./sources/SOURCE_REGISTRY.md`), never absolute paths.
 
 ---
 

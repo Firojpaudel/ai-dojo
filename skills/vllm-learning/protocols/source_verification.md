@@ -14,7 +14,7 @@ Every critical technical claim must be explicitly labeled with one of the follow
 
 ## 2. Mandatory Tool-Call Binding for `[VERIFIED]`
 
-An agent is **strictly prohibited** from emitting the `[VERIFIED]` tag on any file path, class name, invariant, or benchmark metric unless an active tool call (`view_file`, `grep_search`, `run_command`) executed in the session returned the primary source content cited.
+An agent is **strictly prohibited** from emitting the `[VERIFIED]` tag on any file path, class name, invariant, or benchmark metric unless an active tool call executing a verified inspection capability (such as file-read, code-search, or command-execution tools provided by the host environment, e.g., `view_file`/`ReadFile`, `grep_search`/`Grep`, `run_command`/`Bash`) executed in the session returned the primary source content cited.
 
 If the agent has not executed a tool to inspect the primary source directly, it **must** label the statement `[INFERRED]` (if derived logically from physical principles) or `[UNVERIFIED]` (if relying on memory). Emitting `[VERIFIED]` without a supporting tool output is considered a severe anti-hallucination breach.
 

@@ -44,7 +44,7 @@ Progress is governed strictly by **capability evidence and physical invariant ve
 ## Stage 05 — Paged KV Memory Systems & PagedAttention
 - **Core Topics**: The physical memory fragmentation problem: internal reservation waste (pre-allocating for max_seq_len) and external fragmentation (varying request lifetimes). Operating system virtual memory paging analogy. Logical-to-physical block tables, fixed-size KV blocks, non-contiguous physical allocation, copy-on-write (CoW) for parallel sampling, and prefix caching. Mathematical derivation of terminal block internal waste: `average waste = (block_size / 2) / seq_len` (< 4% for block_size=16 and seq_len >= 256).
 - **Physical Invariants**: Memory waste is bounded strictly to the final block of each sequence (< 4% overall waste), completely eliminating external fragmentation and upfront reservation waste.
-- **Milestone Deliverable**: Complete the shipped Stage 05 laboratory (`block_allocator.py`, pass `test_block_allocator.py`, and run `benchmark_fragmentation.py`), verifying logical-to-physical mapping, CoW branching, and empirical memory utilization.
+- **Milestone Deliverable**: Implement a paged block allocator with logical-to-physical block mapping, copy-on-write fork mechanics, and a fragmentation simulator verifying < 4% terminal waste on synthetic workloads.
 
 ---
 
